@@ -1,9 +1,11 @@
 package com.javaapplication.foodcliapp.service;
 
 import com.javaapplication.foodcliapp.exceptions.DishExistsException;
+import com.javaapplication.foodcliapp.exceptions.DishNotFoundException;
 import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.repository.DishRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class DishServiceImpl implements DishService{
@@ -16,6 +18,11 @@ public class DishServiceImpl implements DishService{
     }
 
     @Override
+    public List<Dish> getDishList() {
+        return this.dishRepository.getAllDishes();
+    }
+
+    @Override
     public Dish save(Dish dish) throws DishExistsException {
         Optional<Dish> byDishId = this.dishRepository.findByDishId(dish.getId());
         if(byDishId.isPresent()){
@@ -23,5 +30,14 @@ public class DishServiceImpl implements DishService{
         }
 
         return this.dishRepository.save(dish);
+    }
+
+    @Override
+    public Dish getDishById(String id) throws DishNotFoundException {
+        Optional<Dish> byDishId = this.dishRepository.findByDishId((id));
+        if(byDishId.isEmpty()){
+            throw new DishNotFoundException("Dish not found with id: "+ id);
+        }
+        return byDishId.get();
     }
 }
