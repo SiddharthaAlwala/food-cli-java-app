@@ -5,7 +5,6 @@ import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.model.Restaurant;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
