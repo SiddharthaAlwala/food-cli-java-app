@@ -1,10 +1,13 @@
 package com.javaapplication.foodcliapp.ui;
 
 import com.javaapplication.foodcliapp.controller.CustomerController;
+import com.javaapplication.foodcliapp.controller.DishController;
 import com.javaapplication.foodcliapp.exceptions.CustomerExistsException;
 import com.javaapplication.foodcliapp.model.Customer;
+import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.util.Factory;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -30,6 +33,9 @@ public class Menu {
                 case 1:
                     displayRegisterMenu();
                     break;
+                case 4:
+                    displayDishesMenu();
+                    break;
                 case 7:
                     System.out.println("Thank you for using out food app, See you again");
                     System.exit(0);
@@ -39,6 +45,19 @@ public class Menu {
         }
 
     }
+
+    private void displayDishesMenu() {
+        DishController dishController = Factory.getDishController();
+        //System.out.println(dishController.getDishesList());
+        List<Dish> dishList = dishController.getDishesList();
+        System.out.println("Id          Name            Descrption          Price");
+        System.out.println("-----------------------------------------------------");
+        dishList.forEach(dish ->
+                        System.out.println(dish.getId()+ "          " +dish.getName() + "           " + dish.getDescription() + "           " +dish.getPrice())
+                );
+
+    }
+
     private void displayRegisterMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please register by entering the following details\n");
