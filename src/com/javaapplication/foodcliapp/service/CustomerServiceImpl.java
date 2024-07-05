@@ -1,9 +1,11 @@
 package com.javaapplication.foodcliapp.service;
 
 import com.javaapplication.foodcliapp.exceptions.CustomerExistsException;
+import com.javaapplication.foodcliapp.exceptions.CustomerNotFoundException;
 import com.javaapplication.foodcliapp.model.Customer;
 import com.javaapplication.foodcliapp.repository.CustomerRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService{
@@ -26,4 +28,20 @@ public class CustomerServiceImpl implements CustomerService{
         }
         return this.customerRepository.save(customer);
     }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return this.customerRepository.getAllCustomers();
+    }
+
+    @Override
+    public Customer getCustomerById(String id) throws CustomerNotFoundException {
+        Optional<Customer> customerById = this.customerRepository.findCustomerById(id);
+        if(customerById.isEmpty()){
+            throw new CustomerNotFoundException("Customer with the given id is not found.");
+        }
+        return customerById.get();
+    }
+
+
 }
