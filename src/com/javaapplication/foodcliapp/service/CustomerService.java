@@ -13,4 +13,6 @@ public interface CustomerService {
     public List<Customer> getAllCustomers();
 
     public Customer getCustomerById(String id) throws CustomerNotFoundException;
+
+    public Customer getCustomerByEmail(String email) throws CustomerNotFoundException;
 }

@@ -28,4 +28,8 @@ public class CustomerRepository {
     public Optional<Customer> findCustomerById( String id){
         return this.customerList.stream().filter(customer -> customer.getId().equals(id)).findFirst();
     }
+
+    public Optional<Customer> findCustomerByEmail(String email){
+        return this.customerList.stream().filter(customer -> customer.getEmail().equals(email)).findFirst();
+    }
 }

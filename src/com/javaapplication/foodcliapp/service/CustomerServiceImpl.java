@@ -43,5 +43,16 @@ public class CustomerServiceImpl implements CustomerService{
         return customerById.get();
     }
 
+    @Override
+    public Customer getCustomerByEmail(String email) throws CustomerNotFoundException {
+
+        Optional<Customer> customerByEmail = this.customerRepository.findCustomerByEmail(email);
+        if(customerByEmail.isEmpty()){
+            throw new CustomerNotFoundException("Customer with the given email is not found" + email);
+
+        }
+        return customerByEmail.get();
+    }
+
 
 }

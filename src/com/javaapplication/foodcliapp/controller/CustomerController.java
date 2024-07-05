@@ -26,4 +26,8 @@ public class CustomerController {
     public Customer findCustomerById(String id) throws CustomerNotFoundException{
         return this.customerService.getCustomerById(id);
     }
+
+    public Customer findCustomerByEmail(String email) throws CustomerNotFoundException{
+        return this.customerService.getCustomerByEmail(email);
+    }
 }
