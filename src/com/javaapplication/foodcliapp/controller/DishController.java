@@ -1,6 +1,7 @@
 package com.javaapplication.foodcliapp.controller;
 
 import com.javaapplication.foodcliapp.exceptions.DishExistsException;
+import com.javaapplication.foodcliapp.exceptions.DishNotFoundException;
 import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.service.DishServiceImpl;
 
@@ -21,5 +22,7 @@ public class DishController {
         return this.dishService.save(dish);
     }
 
-
+    public Dish getDishById(String id) throws DishNotFoundException{
+        return this.dishService.getDishById(id);
+    }
 }
