@@ -22,7 +22,7 @@ public class RestaurantRepository {
         return restaurant;
     }
 
-    public Optional<Restaurant> findByRestaurentId(String id){
+    public Optional<Restaurant> findRestaurentById(String id){
         return this.restaurantList.stream().filter(restaurant -> restaurant.getId().equals(id)).findFirst();
     }
 }

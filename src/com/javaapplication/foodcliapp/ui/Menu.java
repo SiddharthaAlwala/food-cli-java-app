@@ -2,6 +2,7 @@ package com.javaapplication.foodcliapp.ui;
 
 import com.javaapplication.foodcliapp.controller.CustomerController;
 import com.javaapplication.foodcliapp.controller.DishController;
+import com.javaapplication.foodcliapp.controller.RestaurantController;
 import com.javaapplication.foodcliapp.exceptions.CustomerExistsException;
 import com.javaapplication.foodcliapp.model.Customer;
 import com.javaapplication.foodcliapp.model.Dish;
@@ -33,6 +34,9 @@ public class Menu {
                 case 1:
                     displayRegisterMenu();
                     break;
+                case 3:
+                    displayRestaurants();
+                    break;
                 case 4:
                     displayDishesMenu();
                     break;
@@ -46,6 +50,8 @@ public class Menu {
 
     }
 
+
+
     private void displayDishesMenu() {
         DishController dishController = Factory.getDishController();
         //System.out.println(dishController.getDishesList());
@@ -57,6 +63,13 @@ public class Menu {
                 );
 
     }
+
+    private void displayRestaurants(){
+        RestaurantController restaurantController = Factory.getRestaurantController();
+        System.out.println(restaurantController.getRestaurantList());
+    }
+
+
 
     private void displayRegisterMenu(){
         Scanner sc = new Scanner(System.in);
