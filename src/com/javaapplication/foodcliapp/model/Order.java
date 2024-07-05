@@ -1,5 +1,6 @@
 package com.javaapplication.foodcliapp.model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,7 @@ public class Order {
     private Restaurant restaurant;
     private List<Dish> dishes;
     private double price;
+    private LocalDate orderDate;
 
     public Order() {
     }
@@ -17,40 +19,54 @@ public class Order {
         return id;
     }
 
-    public void setId(String id) {
+    public Order setId(String id) {
         this.id = id;
+        return this;
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public Order setCustomer(Customer customer) {
         this.customer = customer;
+        return this;
     }
 
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public Order setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
+        return this;
     }
 
     public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(List<Dish> dishes) {
+    public Order setDishes(List<Dish> dishes) {
         this.dishes = dishes;
+        return this;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public Order setPrice(double price) {
         this.price = price;
+        return this;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public Order setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+        return this;
     }
 
     @Override
@@ -58,12 +74,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Double.compare(order.price, price) == 0 && Objects.equals(id, order.id) && Objects.equals(customer, order.customer) && Objects.equals(restaurant, order.restaurant) && Objects.equals(dishes, order.dishes);
+        return Double.compare(order.price, price) == 0 && Objects.equals(id, order.id) && Objects.equals(customer, order.customer) && Objects.equals(restaurant, order.restaurant) && Objects.equals(dishes, order.dishes) && Objects.equals(orderDate, order.orderDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer, restaurant, dishes, price);
+        return Objects.hash(id, customer, restaurant, dishes, price, orderDate);
     }
 
     @Override
@@ -74,6 +90,7 @@ public class Order {
                 ", restaurant=" + restaurant +
                 ", dishes=" + dishes +
                 ", price=" + price +
+                ", orderDate=" + orderDate +
                 '}';
     }
 }
