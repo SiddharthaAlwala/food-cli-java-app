@@ -32,4 +32,22 @@ public class CustomerRepository {
     public Optional<Customer> findCustomerByEmail(String email){
         return this.customerList.stream().filter(customer -> customer.getEmail().equals(email)).findFirst();
     }
+
+    public Customer updateCustomer(Customer customerToBeUpdate){
+        Optional<Customer> updateCustomer = this.customerList.stream().filter(customer -> customer.getId().equals(customerToBeUpdate.getId())).findFirst()
+                .map(customer ->{
+                            customer.setName(customerToBeUpdate.getName())
+                                    .setEmail(customerToBeUpdate.getEmail())
+                                    .setPassword(customerToBeUpdate.getPassword());
+
+                            return customer;
+                });
+                 return updateCustomer.orElse(null);
+
+    }
+
+    public void deleteCustomer(Customer customer){
+         this.customerList.remove(customer);
+
+    }
 }

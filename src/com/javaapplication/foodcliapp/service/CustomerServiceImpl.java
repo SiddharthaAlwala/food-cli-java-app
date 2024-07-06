@@ -54,5 +54,25 @@ public class CustomerServiceImpl implements CustomerService{
         return customerByEmail.get();
     }
 
+    @Override
+    public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
+        Optional<Customer> customerById = this.customerRepository.findCustomerById(customer.getId());
+        if (customerById.isEmpty()){
+            throw new CustomerNotFoundException("Customer with the given id is not present");
+        }
+        return this.customerRepository.updateCustomer(customer);
+    }
+
+    @Override
+    public void deleteCustomer(String id) throws CustomerNotFoundException {
+        Optional<Customer> customerById = this.customerRepository.findCustomerById(id);
+        if(customerById.isEmpty()){
+            throw new CustomerNotFoundException("Customer is not present with the given id to delete" +id);
+
+        }
+        else
+            this.customerRepository.deleteCustomer(customerById.get());
+    }
+
 
 }

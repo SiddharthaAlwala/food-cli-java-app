@@ -30,4 +30,14 @@ public class CustomerController {
     public Customer findCustomerByEmail(String email) throws CustomerNotFoundException{
         return this.customerService.getCustomerByEmail(email);
     }
+
+    public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
+        return this.customerService.updateCustomer(customer);
+    }
+
+    public void deleteCustomer(String id) throws CustomerNotFoundException{
+         this.customerService.deleteCustomer(id);
+    }
+
+
 }
