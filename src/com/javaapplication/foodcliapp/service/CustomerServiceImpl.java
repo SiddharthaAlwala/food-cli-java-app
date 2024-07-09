@@ -12,6 +12,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 
     private CustomerRepository customerRepository;
+    private Customer currentLoggedInCustomer;
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -72,6 +73,26 @@ public class CustomerServiceImpl implements CustomerService{
         }
         else
             this.customerRepository.deleteCustomer(customerById.get());
+    }
+
+    @Override
+    public Customer validateCustomerLogin(String email, String Password) throws CustomerNotFoundException {
+        Optional<Customer> customerByEmailAndPassword = this.customerRepository.findByEmailAndPassword(email, Password);
+        if(customerByEmailAndPassword.isEmpty()){
+            throw new CustomerNotFoundException("Customer with the given email and password is not found. Could you please register.");
+        }
+
+        return customerByEmailAndPassword.get();
+    }
+
+    @Override
+    public void setCurrentLoggedInCustomer(Customer customer) {
+        this.currentLoggedInCustomer = customer;
+    }
+
+    @Override
+    public Customer getCurrentLoggedInCustomer() {
+        return this.currentLoggedInCustomer;
     }
 
 

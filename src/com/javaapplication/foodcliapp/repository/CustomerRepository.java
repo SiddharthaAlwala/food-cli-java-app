@@ -50,4 +50,8 @@ public class CustomerRepository {
          this.customerList.remove(customer);
 
     }
+
+    public Optional<Customer> findByEmailAndPassword(String email, String password){
+        return this.customerList.stream().filter(customer -> customer.getEmail().equalsIgnoreCase(email) && customer.getPassword().equals(password)).findFirst();
+    }
 }
