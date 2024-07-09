@@ -30,4 +30,8 @@ public class RestaurantController {
     public Restaurant updateRestaurant(Restaurant restaurant) throws RestaurantNotFoundException{
         return this.restaurantService.updateRestaurant(restaurant);
     }
+
+    public void deleteCustomer(String id) throws RestaurantNotFoundException{
+        this.restaurantService.deleteRestaurant(id);
+    }
 }

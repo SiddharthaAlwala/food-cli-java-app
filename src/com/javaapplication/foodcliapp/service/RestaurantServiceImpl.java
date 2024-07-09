@@ -48,5 +48,16 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     }
 
+    @Override
+    public void deleteRestaurant(String id) throws RestaurantNotFoundException {
+        Optional<Restaurant> restaurentById = this.restaurantRepository.findRestaurentById(id);
+        if(restaurentById.isEmpty()){
+            throw new RestaurantNotFoundException("Restaurant that you want to delete is not found");
+        }
+        else {
+            this.restaurantRepository.deleteRestaurant(restaurentById.get());
+        }
+    }
+
 
 }

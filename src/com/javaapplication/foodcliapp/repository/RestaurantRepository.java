@@ -37,4 +37,8 @@ public class RestaurantRepository {
                 });
         return restaurantOptional.orElse(null);
     }
+
+    public void deleteRestaurant(Restaurant restaurant){
+        this.restaurantList.remove(restaurant);
+    }
 }
