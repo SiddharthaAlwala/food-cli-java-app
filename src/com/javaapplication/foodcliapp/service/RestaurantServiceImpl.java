@@ -38,5 +38,15 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurentById.get();
     }
 
+    @Override
+    public Restaurant updateRestaurant(Restaurant restaurant) throws RestaurantNotFoundException {
+        Optional<Restaurant> restaurentById = this.restaurantRepository.findRestaurentById(restaurant.getId());
+        if(restaurentById.isEmpty()){
+            throw new RestaurantNotFoundException("Restaurant that you want to update not found");
+        }
+        return this.restaurantRepository.updateRetaurant(restaurant);
+
+    }
+
 
 }

@@ -16,5 +16,7 @@ public interface RestaurantService {
 
     public Restaurant findRestaurantById(String id) throws RestaurantNotFoundException;
 
+    public Restaurant updateRestaurant(Restaurant restaurant) throws  RestaurantNotFoundException;
+
 
 }

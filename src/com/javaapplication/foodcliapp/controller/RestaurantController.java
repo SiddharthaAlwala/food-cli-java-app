@@ -26,4 +26,8 @@ public class RestaurantController {
     public Restaurant findRestaurantById(String id) throws RestaurantNotFoundException{
         return this.restaurantService.findRestaurantById(id);
     }
+
+    public Restaurant updateRestaurant(Restaurant restaurant) throws RestaurantNotFoundException{
+        return this.restaurantService.updateRestaurant(restaurant);
+    }
 }
