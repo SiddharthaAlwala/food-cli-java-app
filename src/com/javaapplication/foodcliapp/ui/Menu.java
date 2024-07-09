@@ -28,13 +28,11 @@ public class Menu {
             System.out.println("7. Exit");
 
             System.out.println("Please enter your option(1-7)");
-
+            // enhancing switch statement. This feature added from java 11.
             int input = sc.nextInt();
             switch(input){
-                case 1:
-                    displayRegisterMenu();
-                    break;
-                case 3:
+                case 1 -> new CustomerMenu().displayMainMenu();
+                /*case 3:
                     displayRestaurants();
                     break;
                 case 4:
@@ -43,74 +41,28 @@ public class Menu {
                 case 7:
                     System.out.println("Thank you for using out food app, See you again");
                     System.exit(0);
+
+
                 default:
                     System.out.println("Invalid Input");
+
+                 */
             }
         }
 
     }
 
-
-
-    private void displayDishesMenu() {
-        DishController dishController = Factory.getDishController();
-        //System.out.println(dishController.getDishesList());
-        List<Dish> dishList = dishController.getDishesList();
-        System.out.println("Id          Name            Descrption          Price");
-        System.out.println("-----------------------------------------------------");
-        dishList.forEach(dish ->
-                        System.out.println(dish.getId()+ "          " +dish.getName() + "           " + dish.getDescription() + "           " +dish.getPrice())
-                );
-
+    public void displayMenuHeader(String menuHeader) {
+        printDashLine();
+        String spaces = new String(new char[70]).replace('\0', ' ');
+        System.out.printf("%-70s %-10s %-70s \n", spaces, menuHeader, spaces);
+        printDashLine();
     }
 
-    private void displayRestaurants(){
-        RestaurantController restaurantController = Factory.getRestaurantController();
-        System.out.println(restaurantController.getRestaurantList());
+    public void printDashLine(){
+        String dashesLine = new String(new char[150]).replace('\0', '-');
+        System.out.println(dashesLine);
     }
 
 
-
-    private void displayRegisterMenu(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please register by entering the following details\n");
-        System.out.println("Enter Id");
-        String id = sc.nextLine();
-        System.out.println("Enter your name");
-        String name = sc.nextLine();
-        System.out.println("Enter your email");
-        String email = sc.nextLine();
-        System.out.println("Enter your password ");
-        String password = sc.nextLine();
-
-        Customer customer = new Customer();
-        customer.setId(id)
-                .setName(name)
-                .setEmail(email)
-                .setPassword(password);
-
-
-        CustomerController customerController = Factory.getCustomerController();
-
-        try{
-            Customer saveCustomer = customerController.save(customer);
-            if(saveCustomer != null){
-                System.out.println("customer Registration successful");
-                System.out.println("Details");
-                System.out.println("Id: "+customer.getId());
-                System.out.println("name: "+customer.getName());
-                System.out.println("email: "+customer.getEmail());
-                System.out.println("password: "+customer.getPassword());
-            }
-            else{
-                System.out.println("Something went wrong. please try again");
-                displayRegisterMenu();
-            }
-        } catch (CustomerExistsException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Please login using main menu");
-            displayMainMenu();
-        }
-
-    }
 }
