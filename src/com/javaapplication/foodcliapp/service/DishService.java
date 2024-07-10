@@ -13,4 +13,6 @@ public interface DishService  {
     public Dish save(Dish dish) throws DishExistsException;
 
     public Dish getDishById(String id) throws DishNotFoundException;
+
+    public void deleteDish(String id) throws  DishNotFoundException;
 }

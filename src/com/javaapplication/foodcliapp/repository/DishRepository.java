@@ -28,5 +28,7 @@ public class DishRepository {
         return this.dishesList.stream().filter(dish -> dish.getId().equals(id)).findFirst();
     }
 
-
+    public void deletDish(String id){
+        this.dishesList.remove(id);
+    }
 }
