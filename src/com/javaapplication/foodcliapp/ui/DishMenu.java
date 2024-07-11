@@ -39,6 +39,12 @@ public class DishMenu extends Menu{
                     case 2-> displayDishes();
                     case 3-> searchDishForm();
                     case 4-> updateDishForm();
+                    case 5-> deleteDishForm();
+                    case 6 -> {
+                        System.out.println("Thank you , See you again !");
+                        super.displayMainMenu();
+                    }
+                    default -> System.out.println("Invalid Input. Please enter the valid input from(1-7)");
                 }
             }
 
@@ -91,7 +97,7 @@ public class DishMenu extends Menu{
 
     public void searchDishForm(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the details of the dish that you want to search");
+        System.out.println("Please enter the details of the dish that you want to search\n");
         System.out.println("Enter the name of the dish name: ");
         String dishName = sc.nextLine();
         try {
@@ -130,6 +136,20 @@ public class DishMenu extends Menu{
             System.out.println(e.getMessage());
         } catch(Exception e){
             System.out.println("Intrenal error occured");
+            displayMainMenu();
+        }
+    }
+
+    public void deleteDishForm(){
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter the following details to delete the Dish\n");
+            System.out.println("Enter Id");
+            String id = scanner.nextLine();
+            dishController.deleteDish(id);
+            System.out.println("Dish Deleted Successfully");
+        } catch (DishNotFoundException e) {
+            System.out.println(e.getMessage());
             displayMainMenu();
         }
     }
