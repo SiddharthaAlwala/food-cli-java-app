@@ -1,14 +1,5 @@
 package com.javaapplication.foodcliapp.ui;
 
-import com.javaapplication.foodcliapp.controller.CustomerController;
-import com.javaapplication.foodcliapp.controller.DishController;
-import com.javaapplication.foodcliapp.controller.RestaurantController;
-import com.javaapplication.foodcliapp.exceptions.CustomerExistsException;
-import com.javaapplication.foodcliapp.model.Customer;
-import com.javaapplication.foodcliapp.model.Dish;
-import com.javaapplication.foodcliapp.util.Factory;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -32,20 +23,17 @@ public class Menu {
             int input = sc.nextInt();
             switch(input){
                 case 1 -> new CustomerMenu().displayMainMenu();
-                case 3 -> new RestaurantMenu().displayMainMenu();
-
-                /*case 4:
-                    displayDishesMenu();
-                    break;
-                case 7:
+                case 2 -> new RestaurantMenu().displayMainMenu();
+                case 3 -> new DishMenu().displayMainMenu();
+                case 4 -> new OrdersMenu().displayMainMenu();
+                case 5->{
                     System.out.println("Thank you for using out food app, See you again");
                     System.exit(0);
-
-
-                default:
+                }
+                default->{
                     System.out.println("Invalid Input");
+                }
 
-                 */
             }
         }
 

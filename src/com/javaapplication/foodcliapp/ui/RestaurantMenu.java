@@ -1,9 +1,12 @@
 package com.javaapplication.foodcliapp.ui;
 
 import com.javaapplication.foodcliapp.controller.RestaurantController;
+import com.javaapplication.foodcliapp.exceptions.DishNotFoundException;
 import com.javaapplication.foodcliapp.exceptions.RestaurantExistsException;
 import com.javaapplication.foodcliapp.exceptions.RestaurantNotFoundException;
+import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.model.Restaurant;
+import com.javaapplication.foodcliapp.service.RestaurantService;
 import com.javaapplication.foodcliapp.util.Factory;
 
 import java.util.Arrays;
@@ -158,6 +161,17 @@ public class RestaurantMenu extends Menu{
         } catch (RestaurantNotFoundException e) {
             System.out.println(e.getMessage());
             displayMainMenu();
+        }
+    }
+
+    public void displayMenuItems(String restaurantId) throws RestaurantNotFoundException, DishNotFoundException {
+        displayMenuHeader("Dishes Menu Details");
+        System.out.printf("%-10s %-30s %-80s %-10s\n", "Id", "Name", "Description", "Price");
+        printDashLine();
+        RestaurantService restaurantService = Factory.getRestaurantService();
+        List<Dish> dishItems = restaurantService.getDishItems(restaurantId);
+        for(Dish dish : dishItems){
+            System.out.printf("%-10s %-30s %-80s %-10s\n", dish.getId(), dish.getName(), dish.getDescription(), String.format("$%.2f", dish.getPrice()));
         }
     }
 

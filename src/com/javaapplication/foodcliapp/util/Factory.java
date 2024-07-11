@@ -2,13 +2,16 @@ package com.javaapplication.foodcliapp.util;
 
 import com.javaapplication.foodcliapp.controller.CustomerController;
 import com.javaapplication.foodcliapp.controller.DishController;
+import com.javaapplication.foodcliapp.controller.OrderController;
 import com.javaapplication.foodcliapp.controller.RestaurantController;
 import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.repository.CustomerRepository;
 import com.javaapplication.foodcliapp.repository.DishRepository;
+import com.javaapplication.foodcliapp.repository.OrderRepository;
 import com.javaapplication.foodcliapp.repository.RestaurantRepository;
 import com.javaapplication.foodcliapp.service.CustomerServiceImpl;
 import com.javaapplication.foodcliapp.service.DishServiceImpl;
+import com.javaapplication.foodcliapp.service.OrderServiceImpl;
 import com.javaapplication.foodcliapp.service.RestaurantServiceImpl;
 
 public class Factory {
@@ -47,5 +50,16 @@ public class Factory {
 
     public static RestaurantController getRestaurantController(){
         return new RestaurantController(getRestaurantService());
+    }
+
+    public static OrderRepository getOrderRepository(){
+        return new OrderRepository();
+    }
+    public static OrderServiceImpl getOrderService(){
+        return new OrderServiceImpl(getOrderRepository());
+    }
+
+    public static OrderController getOrderController(){
+        return new OrderController(getOrderService());
     }
 }

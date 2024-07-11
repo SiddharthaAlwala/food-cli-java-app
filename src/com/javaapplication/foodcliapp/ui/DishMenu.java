@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DishMenu extends Menu{
+
     private DishController dishController;
 
     public DishMenu() {
