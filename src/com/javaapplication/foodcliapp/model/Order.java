@@ -9,7 +9,7 @@ public class Order {
     private Customer customer;
     private Restaurant restaurant;
     private List<Dish> dishes;
-    private double price;
+    private double totalPrice;
     private LocalDate orderDate;
 
     public Order() {
@@ -51,12 +51,12 @@ public class Order {
         return this;
     }
 
-    public double getPrice() {
-        return price;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public Order setPrice(double price) {
-        this.price = price;
+    public Order setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
         return this;
     }
 
@@ -74,12 +74,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Double.compare(order.price, price) == 0 && Objects.equals(id, order.id) && Objects.equals(customer, order.customer) && Objects.equals(restaurant, order.restaurant) && Objects.equals(dishes, order.dishes) && Objects.equals(orderDate, order.orderDate);
+        return Double.compare(order.totalPrice, totalPrice) == 0 && Objects.equals(id, order.id) && Objects.equals(customer, order.customer) && Objects.equals(restaurant, order.restaurant) && Objects.equals(dishes, order.dishes) && Objects.equals(orderDate, order.orderDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, customer, restaurant, dishes, price, orderDate);
+        return Objects.hash(id, customer, restaurant, dishes, totalPrice, orderDate);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Order {
                 ", customer=" + customer +
                 ", restaurant=" + restaurant +
                 ", dishes=" + dishes +
-                ", price=" + price +
+                ", price=" + totalPrice +
                 ", orderDate=" + orderDate +
                 '}';
     }
