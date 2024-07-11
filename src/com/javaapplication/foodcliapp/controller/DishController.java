@@ -26,6 +26,12 @@ public class DishController {
         return this.dishService.getDishById(id);
     }
 
+    public Dish getDishByName(String name) throws DishNotFoundException{
+        return this.dishService.getDishByName(name);
+    }
+
+
+
     public void deleteDish(String id) throws DishNotFoundException{
         this.dishService.deleteDish(id);
     }

@@ -28,6 +28,10 @@ public class DishRepository {
         return this.dishesList.stream().filter(dish -> dish.getId().equals(id)).findFirst();
     }
 
+    public Optional<Dish> findDishByName(String name){
+        return this.dishesList.stream().filter(dish -> dish.getName().equals(name)).findFirst();
+    }
+
     public void deletDish(String id){
         this.dishesList.remove(id);
     }

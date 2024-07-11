@@ -42,6 +42,15 @@ public class DishServiceImpl implements DishService{
     }
 
     @Override
+    public Dish getDishByName(String name) throws DishNotFoundException {
+        Optional<Dish> dishByName = this.dishRepository.findDishByName(name);
+        if(dishByName.isEmpty()){
+            throw new DishNotFoundException("Dish is not found with the given name: "+ name);
+        }
+        return dishByName.get();
+    }
+
+    @Override
     public void deleteDish(String id) throws DishNotFoundException {
         Optional<Dish> byDishId = this.dishRepository.findByDishId(id);
         if(byDishId.isEmpty()){
