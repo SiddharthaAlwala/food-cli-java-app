@@ -1,10 +1,14 @@
 package com.javaapplication.foodcliapp.service;
 
+import com.javaapplication.foodcliapp.exceptions.DishNotFoundException;
 import com.javaapplication.foodcliapp.exceptions.RestaurantExistsException;
 import com.javaapplication.foodcliapp.exceptions.RestaurantNotFoundException;
+import com.javaapplication.foodcliapp.model.Dish;
 import com.javaapplication.foodcliapp.model.Restaurant;
 import com.javaapplication.foodcliapp.repository.RestaurantRepository;
+import com.javaapplication.foodcliapp.util.Factory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +61,22 @@ public class RestaurantServiceImpl implements RestaurantService {
         else {
             this.restaurantRepository.deleteRestaurant(restaurentById.get());
         }
+    }
+
+    @Override
+    public List<Dish> getDishItems(String id) throws RestaurantNotFoundException, DishNotFoundException {
+        Optional<Restaurant> restaurantById = this.restaurantRepository.findRestaurentById(id);
+        if(restaurantById.isEmpty())
+            throw new RestaurantNotFoundException("Restaurant Not Found with this Id  :" + id);
+        List<Dish> dishList = new ArrayList<>();
+        Restaurant restaurant = restaurantById.get();
+        List<String> dishIds = restaurant.getMenu();
+        DishService dishService = Factory.getDishService();
+        for(String dishId : dishIds){
+            Dish dish = dishService.getDishById(dishId);
+            dishList.add(dish);
+        }
+        return dishList;
     }
 
 
