@@ -32,10 +32,9 @@ public class Menu {
             int input = sc.nextInt();
             switch(input){
                 case 1 -> new CustomerMenu().displayMainMenu();
-                /*case 3:
-                    displayRestaurants();
-                    break;
-                case 4:
+                case 3 -> new RestaurantMenu().displayMainMenu();
+
+                /*case 4:
                     displayDishesMenu();
                     break;
                 case 7:
