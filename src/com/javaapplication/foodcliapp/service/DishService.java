@@ -16,5 +16,7 @@ public interface DishService  {
 
     public Dish getDishByName(String name) throws DishNotFoundException;
 
+    public Dish updateDish(Dish dish) throws DishNotFoundException;
+
     public void deleteDish(String id) throws  DishNotFoundException;
 }

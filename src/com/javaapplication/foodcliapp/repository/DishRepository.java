@@ -32,6 +32,19 @@ public class DishRepository {
         return this.dishesList.stream().filter(dish -> dish.getName().equals(name)).findFirst();
     }
 
+    public Dish updateDish(Dish dishToBeUpdated){
+        Optional<Dish> updateDish = this.dishesList.stream().filter(dish -> dish.getId().equals(dishToBeUpdated.getId())).findFirst()
+                .map(dish -> {
+                    dish.setName(dishToBeUpdated.getName())
+                            .setDescription(dishToBeUpdated.getDescription())
+                            .setPrice(dishToBeUpdated.getPrice());
+
+                    return dish;
+                });
+                return updateDish.orElse(null);
+    }
+
+
     public void deletDish(String id){
         this.dishesList.remove(id);
     }

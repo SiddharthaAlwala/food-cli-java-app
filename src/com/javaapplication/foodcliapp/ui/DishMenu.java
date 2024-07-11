@@ -38,7 +38,7 @@ public class DishMenu extends Menu{
                     case 1-> newDIshForm();
                     case 2-> displayDishes();
                     case 3-> searchDishForm();
-                    //case 3-> updateDishForm();
+                    case 4-> updateDishForm();
                 }
             }
 
@@ -104,7 +104,7 @@ public class DishMenu extends Menu{
 
     }
 
-   /* public void updateDishForm(){
+    public void updateDishForm(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Update entering the following details\n");
         System.out.println("Enter Dish Id");
@@ -121,8 +121,18 @@ public class DishMenu extends Menu{
                 .setDescription(description)
                 .setPrice(price);
 
-        this.dishController.
-    }*/
+        try {
+            Dish updateDish = this.dishController.updateDish(dish);
+            System.out.println("Dish updated succesfully");
+            displayDish(updateDish);
+
+        } catch (DishNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch(Exception e){
+            System.out.println("Intrenal error occured");
+            displayMainMenu();
+        }
+    }
 
 
     public void displayDish(Dish dish) {

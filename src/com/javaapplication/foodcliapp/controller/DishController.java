@@ -8,6 +8,7 @@ import com.javaapplication.foodcliapp.service.DishServiceImpl;
 import java.util.List;
 
 public class DishController {
+
     private DishServiceImpl dishService;
 
     public DishController(DishServiceImpl dishService) {
@@ -30,7 +31,9 @@ public class DishController {
         return this.dishService.getDishByName(name);
     }
 
-
+    public Dish updateDish(Dish dish) throws DishNotFoundException{
+        return this.dishService.updateDish(dish);
+    }
 
     public void deleteDish(String id) throws DishNotFoundException{
         this.dishService.deleteDish(id);
